@@ -62,6 +62,10 @@ print("The average score was " + str((game1 + game2 + game3 + game4 + game5)/5))
 
 # exercise 7
 
+bill = int(input("How much is the bill? "))
+people = int(input("How many people will split it? "))
+print("Your portion is " + str(bill + people) + "dollars.")
+
 
 
 
