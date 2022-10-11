@@ -17,4 +17,4 @@ noun = input("Enter a noun: ")
 ptv = input("Enter a past tense verb: ")
 noun2 = input("Enter another noun: ")
 
-print("The quick " + )
+print("The quick " + adj + noun + ptv + "over the lazy " + noun2)
