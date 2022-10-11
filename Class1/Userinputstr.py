@@ -18,3 +18,12 @@ ptv = input("Enter a past tense verb: ")
 noun2 = input("Enter another noun: ")
 
 print("The quick " + adj + " " + noun + " " + ptv + " over the lazy " + noun2)
+
+# Exercise 10
+
+noun = input("Enter a noun: ")
+ptv = input("Enter a present tense verb: ")
+adjective = input("Enter an adjective: ")
+
+print("My " + noun + " " + ptv + " " + adjective + " .")
+
