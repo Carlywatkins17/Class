@@ -27,10 +27,11 @@ print(text.istitle())
 
 Thanks = True
 link = input('Please enter the URL of your favorite weather website: ')
-if (link.startswith('http') True):
+if link.startswith('http') == True:
     print('Thank you')
-elif (link.startswith('http') False):
+elif link.startswith('http') == False:
     print('That is an invalid link')
+    
     
 
 
