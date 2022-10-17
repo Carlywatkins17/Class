@@ -21,7 +21,7 @@ print(text.upper())
 print(text.lower())
 print(text.istitle())
 
-#Exercise 2 Write origram asks the user for alink to a website.  Use the startswith to check that the link starts with the string http.  
+#Exercise 2 Write program asks the user for alink to a website.  Use the startswith to check that the link starts with the string http.  
 # If it does, thank the user for giving a valid link
 #If not, tell the user they gave an invalid link.  
 
@@ -31,7 +31,7 @@ if link.startswith('http') == True:
     print('Thank you')
 elif link.startswith('http') == False:
     print('That is an invalid link')
-    
+
     
 
 
