@@ -33,6 +33,15 @@ elif link.startswith('http') == False:
     print('That is an invalid link')
 
     
+#Exercise 3 One of the important functions for strings is strip, which removes spaces at the beginning and the end of the string. 
+# That is, if I have text = ' hello ', newtext = text.strip() will result with the value 'hello' in newtext. 
+# Write a program that asks the user for their name, then outputs a welcome text to the the user with their name, 
+# using strip() to make sure the name doesn't have spaces surrounding it.
+
+name = (input('What is your name? '))
+newname = (name.strip())
+
+print('Welcome to class ' + newname)
 
 
 
