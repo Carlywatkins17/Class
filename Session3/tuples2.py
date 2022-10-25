@@ -7,8 +7,12 @@
 
 # Exercise 5 Modify that program further by printing out a receipt once the cart is empty. Also print out the total cost of the items in the cart.
 
+#create an empty list for what they add to the list
 cart = []
 
+#solicit user input of list items
+#add them to the list
+#if they are done, end the loop and let them know its time to shop
 item = ""
 while item != 'done':
     item = input('enter a grocery item, or done to exit: ')
@@ -18,8 +22,14 @@ while item != 'done':
         print(cart)
         print('Time to shop!')
 
+#create an empty list for what they actually bought
 receipt = []
 
+#if there are items in the cart, ask the user to check them off
+#for each item they check off ask for the price and quantity
+#print the cart
+#if they try to check something off thats not on the list tell them so
+#When they have got everything, make a receipt
 while cart != False:
     x = input('Check off an item: ')
     if x in cart:
