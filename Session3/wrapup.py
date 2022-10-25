@@ -24,12 +24,12 @@ E = (random.randrange(1,100))
 F = (random.randrange(1,100))
 
 #This function asks an arithmetic question using the random variables above,
-# returns the answer 
+# returns the user input
 
 def getuserresponse(x,y,op):
     q = 'What is ' + str(x) + ' ' + op + ' ' + str(y) + '?: '
-    qlist.append(q)
     ans = int(input(q))
+    qlist.append((q, ans,))
     return ans
 
 
@@ -64,6 +64,7 @@ testuser(A,B,'%', 'question 5', A % B)
 
 print(qlist)
 
+#left off after step1 of the session 3wrap up.  next need to modify to include the correct answer in each tuple.   I was getting it in the list, not the tuple.
 
 
 
