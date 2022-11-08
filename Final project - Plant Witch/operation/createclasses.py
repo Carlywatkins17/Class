@@ -8,20 +8,21 @@
 
 from datetime import date, timedelta, datetime
 
+
 class bed:
-    def __init__(self, name='', length=0, width=0, depth=0, sun='', drainage='', ffd='01/01/1999', pfd='01/01/1999', nfd='01/01/1999', finfd='01/01/1999'):
+    def __init__(self, name='', length=0, width=0, depth=0, sun='', drainage='', ffd='01/01/1999', pfd='01/01/1999', finfd='01/01/1999'):
         self.name = name
         self.length = length
         self.width = width
         self.depth = depth
         self.sun = sun
         self.drainage = drainage
-        self.ffd = datetime.strptime(ffd, '%m/%d/%y')  #use datetime-strptime format 
-        self.pfd = datetime.strptime(pfd, '%m/%d/%y') 
-        self.nfd = datetime.strptime(nfd, '%m/%d/%y') 
-        self.finfd = datetime.strptime(finfd, '%m/%d/%y')
+        self.ffd = datetime.strptime(ffd, '%m/%d/%Y')  
+        self.pfd = datetime.strptime(pfd, '%m/%d/%Y') 
+        self.finfd = datetime.strptime(finfd, '%m/%d/%Y') 
 
 
+    
 #referenced stack overflow user Burnash "Iterating through a range of dates in python" edited code to my specifications.
 # from datetime import date, timedelta
 #start_date = date(2019, 1, 1)
@@ -34,38 +35,48 @@ class bed:
 #creates a calendar of that years recommended fertilization dates for that bed
 
     def fertilize_calendar(self):
-        first_fert_date = date(2023, 5, 1)
-        final_fert_date= date(2023, 10, 1)
         delta = timedelta(weeks=2)
-        while first_fert_date <= final_fert_date:
-            print(first_fert_date.strftime("%Y-%m-%d"))
-            first_fert_date += delta
+        while self.ffd <= self.finfd:
+            print(self.ffd)
+            self.ffd += delta
 
- #calculates the next fertilization date based on last date and recommended frequency
-    def next_fert_date(self):
+ # calculates the next fertilization date based on last date and recommended frequency
+    #def nfd(self):
+        #delta = timedelta(weeks=2)
+        #if self.pfd <= self.finfd:
+            #next = self.pfd + delta
+            #print(next)  
+                         
+    def nfd(self):
         delta = timedelta(weeks=2)
-        while self.pfd <= self.finfd:
-            print("The last fertilization was: " "\n" + self.pfd.strftime("%Y-%m-%d"))
-            print("The next fertilization should be: ")
-            self.pfd += delta
-            break
+        while self.pfd <= self.finfd: 
+            text=input("The next fertilize date is: " + str(self.pfd + delta))
+            return text
+            
+            
    #calculates the size of the bed 
     def dimension(self):
-        dimension=input(name + "is " + (length*width) + "sqft" )
+        dimension=input(self.name + " is " + str(self.length*self.width) + " sqft" )
         return dimension 
 
-bed1 = bed()
-bed2 = bed('bed2', 10, 4, 1, 'full', 'moderate', '2023, 5, 1', '2023, 9, 1', '', '2023, 10, 1' )  
-bed3 = bed('bed3', 8, 3, 1, 'moderate', 'high', '2023, 5, 1', '2023, 9, 1', '', '2023, 10, 1')  
+bed1 = bed('bed1', 8, 3, 1, 'light', 'low', '01/05/2023', '09/01/2023','10/01/2023')
+bed2 = bed('bed2', 10, 4, 1, 'full', 'moderate', '01/05/2023', '09/02/2023', '10/01/2023')  
+bed3 = bed('bed3', 8, 3, 1, 'moderate', 'high', '05/01/2023', '09/03/2023', '10/01/2023')  
 #how do I print this to file
 
-print(bed.name)
+print(bed1.name)
+print(bed1.sun)
+print(bed1.finfd)
+bed1.fertilize_calendar()
+bed1.dimension()
+bed1.nfd()
 
-bed2.fertilize_calendar
-bed2.next_fert_date
-bed2.dimension 
+f = open('../data/beds.txt', 'a')
+f.write('# Measure and name beds, create classes and behaviors')
 
-#Why does are my fert dates not recognized other than the one defined by a function?
+
+
+
 
 
 
