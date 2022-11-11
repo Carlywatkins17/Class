@@ -40,12 +40,7 @@ class bed:
             print(self.ffd)
             self.ffd += delta
 
- # calculates the next fertilization date based on last date and recommended frequency
-    #def nfd(self):
-        #delta = timedelta(weeks=2)
-        #if self.pfd <= self.finfd:
-            #next = self.pfd + delta
-            #print(next)  
+ # calculates the next fertilization date based on last date and recommended frequency 
                          
     def nfd(self):
         delta = timedelta(weeks=2)
@@ -56,23 +51,48 @@ class bed:
             
    #calculates the size of the bed 
     def dimension(self):
-        dimension=input(self.name + " is " + str(self.length*self.width) + " sqft" )
+        dimension=input(self.name + " is " + str(self.length*self.width) + " sq ft" )
         return dimension 
 
-bed1 = bed('bed1', 8, 3, 1, 'light', 'low', '01/05/2023', '09/01/2023','10/01/2023')
-bed2 = bed('bed2', 10, 4, 1, 'full', 'moderate', '01/05/2023', '09/02/2023', '10/01/2023')  
-bed3 = bed('bed3', 8, 3, 1, 'moderate', 'high', '05/01/2023', '09/03/2023', '10/01/2023')  
-#how do I print this to file
+    # solicits user input on which beds need more soil and calculates the volume needed in units that the product is sold in.
+    def soil(self):
+        soil_order = []
+        b=input('Which beds to do you need soil for? Type name or done: ')
+        while b != 'done':
+            soil_order.append(b)
+            print('You need ' + str(((self.length * self.width * self.depth)*self.depth)/27) + " cubic yards of soil") 
+            b=input('Which beds to do you need soil for? Type name or done: ')    
+        
+# solicits user input on the garden beds
+beds = []
+def getuserresponse():
+    QN = input('What is the bed name? Enter "done" if finished:') 
+    while QN != 'done':
+        QL = input('What is the length of' + QN + '?: ')
+        QW = input('What is the width of' + QN + '?: ')
+        QD= input('What is the depth of' + QN + '?: ')
+        QS= input('Does ' + QN + ' have shade, partial, or full sun?: ')
+        QDr= input('Does ' + QN + ' have low, moderate, or high drainage?: ')
+        Qpfd= input('What was the prior fertilization date? format 01/01/1999: ')
+   
+        beds.append(bed(QN, QL, QW, QD, QS, QDr, Qpfd))
+        QN = input('What is the bed name?:') 
 
-print(bed1.name)
-print(bed1.sun)
-print(bed1.finfd)
-bed1.fertilize_calendar()
-bed1.dimension()
-bed1.nfd()
+# writes the user input/class data to a file        
+def save_beds():
+    f = open('../data/beds.txt', 'a')
+    f.write('store bed data here\n')
+    getuserresponse() 
 
-f = open('../data/beds.txt', 'a')
-f.write('# Measure and name beds, create classes and behaviors')
+    for b in beds:
+        f.write(b.name) #repeat for other properties
+        f.write(b.length)
+        f.write(b.width)
+        f.write(b.depth)
+        f.write(b.sun)
+        f.write(b.drainage)
+        f.write(b.pfd)
+
 
 
 

@@ -1,1 +1,21 @@
 # function library
+
+creates a full fertilize calendar for the season
+def fertilize_calendar(self):
+        delta = timedelta(weeks=2)
+        while self.ffd <= self.finfd:
+            print(self.ffd)
+            self.ffd += delta
+
+tells you next fert date based on last fert date
+ def nfd(self):
+        delta = timedelta(weeks=2)
+        while self.pfd <= self.finfd: 
+            text=input("The next fertilize date is: " + str(self.pfd + delta))
+            return text
+
+calculates bed size
+def dimension(self):
+        dimension=input(self.name + " is " + str(self.length*self.width) + " sqft" )
+        return dimension 
+
