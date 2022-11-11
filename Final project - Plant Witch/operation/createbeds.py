@@ -34,34 +34,42 @@ class bed:
 
 #creates a calendar of that years recommended fertilization dates for that bed
 
+    save_cal = []
     def fertilize_calendar(self):
         delta = timedelta(weeks=2)
-        while self.ffd <= self.finfd:
-            print(self.ffd)
-            self.ffd += delta
+        c = input('Which bed would you like the calendar for?: ')
+        for c in bed:
+            if self.ffd <= self.finfd:
+                print(self.ffd)
+                self.ffd += delta
+                
 
  # calculates the next fertilization date based on last date and recommended frequency 
+
                          
     def nfd(self):
         delta = timedelta(weeks=2)
-        while self.pfd <= self.finfd: 
-            text=input("The next fertilize date is: " + str(self.pfd + delta))
-            return text
+        b = input('What bed do you need the next fertilization date for? Type name or done: ')
+        for b in bed:
+            while self.pfd <= self.finfd: 
+                text=input("The next fertilize date is: " + str(self.pfd + delta))
+                return text
             
             
    #calculates the size of the bed 
+    
     def dimension(self):
-        dimension=input(self.name + " is " + str(self.length*self.width) + " sq ft" )
-        return dimension 
+        for d in bed:
+            d = input('Which bed do you need the size of?: ')
+            print(d + " is " + str(self.length*self.width) + " sq ft" )
+            
 
     # solicits user input on which beds need more soil and calculates the volume needed in units that the product is sold in.
     def soil(self):
-        soil_order = []
-        b=input('Which beds to do you need soil for? Type name or done: ')
-        while b != 'done':
-            soil_order.append(b)
+        for s in bed:
+            s = input('Which bed to do you need soil for?: ')
             print('You need ' + str(((self.length * self.width * self.depth)*self.depth)/27) + " cubic yards of soil") 
-            b=input('Which beds to do you need soil for? Type name or done: ')    
+               
         
 # solicits user input on the garden beds
 beds = []

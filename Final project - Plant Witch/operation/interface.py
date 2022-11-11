@@ -11,20 +11,24 @@ save_beds()
 
 
 calendar = input('Would you like a fertilization schedule? yes or no: ') 
-if calendar == 'yes':
+if calendar != 'no':
     fertilize_calendar()
+    input('Would you like a fertilization schedule? yes or no: ') 
 
 sched = input('Are you on schedule for fertilizing? yes or no:')
-if sched == 'no':
-    bd = input('which bed do you need the next fertilize date for?: ')
-    nfd(bd.bed)
+if sched != 'yes':
+    nfd()
 
-dirt = input('Do you need bed dimensions? yes or no: ')
-if dirt == 'yes':
+dirt = input('Do you need bed size? yes or no: ')
+if dirt != 'no':
     dimension()
+    input('Do you need bed size? yes or no: ')
 
-order = input('Do you need to calculate the your soil order size? yes or no: ')
-if order == 'yes':
+save_order = []
+order = input('Do you need to calculate your soil order volume? yes or no: ')
+if order != 'no':
     soil()
+
+# I want to allow the user to sum the volume of several beds for the soil order. 
 
 save_plants()
