@@ -1,65 +1,63 @@
-from datetime import date, timedelta, datetime
+import sys
+from PyQt6.QtWidgets import *
+from pathlib import Path
+from PyQt6.QtGui import QIcon
+
+class mainwindow(QWidget):
+    def __init__(self, parent = None):
+        super(mainwindow, self).__init__(parent)
+        self.setGeometry(500, 500, 500, 100)
+        self.setWindowTitle("Plant Witch Login")
 
 
-class bed:
-    def __init__(self, name='', length=0, width=0, depth=0, sun='', drainage='', ffd='01/01/1999', pfd='01/01/1999', n_f='01/01/1999', finfd='01/01/1999'):
-        self.name = name
-        self.length = length
-        self.width = width
-        self.depth = depth
-        self.sun = sun
-        self.drainage = drainage
-        self.ffd = ffd
-        self.pfd = pfd
-        self.n_f = n_f
-        self.finfd = finfd
-  
+        labels = ['Your Name', 'Garden Name', 'E-mail', 'Phone']
+        self.textboxes = {}
+
+        mainlayout = QVBoxLayout()
+        formlayout = QFormLayout()
+        self.setLayout(mainlayout)
+        mainlayout.addLayout(formlayout)
         
-      
+        heading = QLabel( 'Welcome!')
+        heading.setObjectName('heading')
+
+        subheading = QLabel('Please enter your email and password to log in.')
+        subheading.setObjectName('subheading')
+
         
+        for l in labels:
+            #add the label
 
-#referenced stack overflow user Burnash "Iterating through a range of dates in python" edited code to my specifications.
-# from datetime import date, timedelta
-#start_date = date(2019, 1, 1)
-#end_date = date(2020, 1, 1)
-#delta = timedelta(days=1)
-#while start_date <= end_date:
-#    print(start_date.strftime("%Y-%m-%d"))
-#    start_date += delta
+            #now add a textbox for that lable,
+            # and also hold it in the dictionary so we cn use it later
+            txt = QLineEdit()
+            formlayout.addRow(l, txt)
+            self.textboxes[l] = txt
 
-#creates a calendar of that years recommended fertilization dates for that bed
+    
 
-    def fertilize_calendar(self):
-        self.ffd = datetime.strptime(self.ffd, '05/1/2023')
-        self.finfd= datetime.strptime(self.finfd, '01/10/2023')
-        delta = timedelta(weeks=2)
-        while self.ffd <= self.finfd:
-            print(self.ffd.datetime.strptime('%m/%d/%Y'))
-            self.ffd += delta
+        #finally, add a button
+        b = QPushButton("Submit")
+        b.clicked.connect(self.button_clicked)
+        mainlayout.addWidget(b)
 
-bed1 = bed('bed1', 10, 2, 1, 'mild', 'high', '05/01/2023', '06/02/2023', '', '10/01/2023')
+    
+        self.labelResult = QLabel()
+        mainlayout.addWidget(self.labelResult)
+        
+        self.show()
 
-bed1.fertilize_calendar
- #calculates the next fertilization date based on last date and recommended frequency
-    #def nfd(self):
-        #delta = timedelta(weeks=2)
-       # while self.pfd <= self.finfd:
-            #next = self.pfd + delta
-           # return next
-            #break
-                                             
+    def button_clicked(self):
+        self.labelResult.setText(self.textboxes['Your Name'].text())
 
-   #calculates the size of the bed 
-   # def size(self):
-       # size=input(self.name + "is " + (self.length*self.width) + "sqft" )
-       # return size 
+def main():
+    app = QApplication([])
+    app.setStyleSheet(Path('login.qss').read_text())
+    w = mainwindow()
+    w.show()
+    sys.exit(app.exec())
 
-#bed1 = bed()
-#bed2 = bed('bed2', 10, 4, 1, 'full', 'moderate', '01/05/2023', '09/02/2023', '', '10/02/2023')  
-#bed3 = bed('bed3', 8, 3, 1, 'moderate', 'high', '05/01/2023', '09/03/2023', '', '10/01/2023')  
-#how do I print this to file
+if __name__ == '__main__':
+    main()
 
-#print(bed2.name)
-#print(bed2.sun)
-#print(bed2.finfd)
-#bed2.nfd()
+

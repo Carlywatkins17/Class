@@ -1,1 +1,0 @@
-# inventory plants.  Should have 3 classes under super class "plants"
